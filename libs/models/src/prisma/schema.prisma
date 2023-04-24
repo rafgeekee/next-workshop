@@ -1,0 +1,29 @@
+generator client {
+  provider        = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://next-workshop@localhost:5432/next-workshop"
+}
+
+model Movie {
+  id String @id @default(cuid())
+  title String
+  year Int
+  plot String
+  actors Actor[]
+  genres Genre[]
+}
+
+model Actor {
+  id String @id @default(cuid())
+  name String
+  movies Movie[]
+}
+
+model Genre {
+  id String @id @default(cuid())
+  name String
+  movies Movie[]
+}
